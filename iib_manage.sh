@@ -63,7 +63,7 @@ start_iib()
 		  if [ -f /tmp/script/postconfig.sh ]
 		  then
 			echo "ejecutando........."
-			sudo /tmp/script/postconfig.sh
+			/tmp/script/postconfig.sh
 			echo "fin sh post........."
 		  fi
 		  echo "----------------------------------------"
