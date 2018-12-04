@@ -6,16 +6,6 @@ LABEL "ProductID"="447aefb5fd1342d5b893f3934dfded73" \
       "ProductName"="IBM Integration Bus" \
       "ProductVersion"="10.0.0.11"
 
-# Fix timezone
-ENV AR 'America/Buenos_Aires'
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
-RUN echo $AR > /etc/timezone && \
-    apt-get update && apt-get install -y tzdata && \
-    rm /etc/localtime && \
-    ln -snf /usr/share/zoneinfo/$AR /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata && \
-    apt-get clean
-
 # The URL to download the MQ installer from in tar.gz format
 ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev904_ubuntu_x86-64.tar.gz
 
@@ -107,6 +97,15 @@ RUN chmod 755 /usr/local/bin/*.sh \
 
 # Set BASH_ENV to source mqsiprofile when using docker exec bash -c
 ENV BASH_ENV=/usr/local/bin/iib_env.sh MQSI_MQTT_LOCAL_HOSTNAME=127.0.0.1 MQSI_DONT_RUN_LISTENER=true LANG=en_US.UTF-8
+
+# Fix timezone
+ENV AR 'America/Buenos_Aires'
+RUN echo $AR > /etc/timezone && \
+    apt-get update && apt-get install -y tzdata && \
+    rm /etc/localtime && \
+    ln -snf /usr/share/zoneinfo/$AR /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get clean
 
 # Expose default admin port and http ports
 EXPOSE 4414 7800 1414
