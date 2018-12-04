@@ -1,10 +1,19 @@
 FROM ubuntu:16.04
 
-LABEL maintainer "Dan Robinson <dan.robinson@uk.ibm.com>"
+LABEL maintainer "Pablo Pedraza <ppedraza.sofrecom@supervielle.com.ar>"
 
 LABEL "ProductID"="447aefb5fd1342d5b893f3934dfded73" \
       "ProductName"="IBM Integration Bus" \
       "ProductVersion"="10.0.0.11"
+
+# Fix timezone
+ENV AR 'America/Buenos_Aires'
+RUN echo $AR > /etc/timezone && \
+    apt-get update && apt-get install -y tzdata && \
+    rm /etc/localtime && \
+    ln -snf /usr/share/zoneinfo/$AR /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get clean
 
 # The URL to download the MQ installer from in tar.gz format
 ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev904_ubuntu_x86-64.tar.gz
