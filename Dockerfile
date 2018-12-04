@@ -8,6 +8,7 @@ LABEL "ProductID"="447aefb5fd1342d5b893f3934dfded73" \
 
 # Fix timezone
 ENV AR 'America/Buenos_Aires'
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN echo $AR > /etc/timezone && \
     apt-get update && apt-get install -y tzdata && \
     rm /etc/localtime && \
