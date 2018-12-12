@@ -15,6 +15,11 @@ RUN echo $AR > /etc/timezone && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get clean
 
+# Instalo Java
+RUN sudo apt-get update -y \
+  && sudo apt-get install -y default-jre
+
+
 # The URL to download the MQ installer from in tar.gz format
 # ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev904_ubuntu_x86-64.tar.gz
 ARG MQ_URL=https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/messaging/mqadv/mqadv_dev910_ubuntu_x86-64.tar.gz
