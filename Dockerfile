@@ -16,8 +16,8 @@ RUN echo $AR > /etc/timezone && \
     apt-get clean
 
 # Instalo Java
-RUN sudo apt-get update -y \
-  && sudo apt-get install -y default-jre
+RUN apt-get update -y \
+  && apt-get install -y default-jre
 
 
 # The URL to download the MQ installer from in tar.gz format
