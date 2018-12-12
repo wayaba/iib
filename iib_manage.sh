@@ -35,14 +35,16 @@ start_iib()
 	if [ ${NODE_EXISTS} -ne 0 ]; then
 	  echo "Execute pre custom config (/tmp/script/preconfig.sh)"
 	  echo "----------------------------------------"
+	  /*
           echo "----------------------------------------"
-		  if [ -f /tmp/script/preconfig.sh ]
+		  if [ -f /tmp/scripts/preconfig.sh ]
 		  then
 			echo "ejecutando pre........."
 			/tmp/script/preconfig.sh
 			echo "fin sh pre........."
 		  fi
 	  echo "----------------------------------------"
+	  */
           echo "----------------------------------------"
           echo "Node $NODENAME does not exist..."
           echo "Creating node $NODENAME"
@@ -69,14 +71,16 @@ start_iib()
           echo "----------------------------------------"
 	  echo "Execute post custom config (/tmp/script/postconfig.sh)"
 	  echo "----------------------------------------"
+	  /*
           echo "----------------------------------------"
-		  if [ -f /tmp/script/postconfig.sh ]
+		  if [ -f /tmp/scripts/postconfig.sh ]
 		  then
 			echo "ejecutando post........."
 			/tmp/script/postconfig.sh
 			echo "fin sh post........."
 		  fi
 	  echo "----------------------------------------"
+	  */
           echo "----------------------------------------"
 	else
           echo "----------------------------------------"
